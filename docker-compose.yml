@@ -2,8 +2,14 @@ version: "3.2"
 
 services:
 
-  fluffy:
-    command: /bin/bash -c "exec nginx -g 'daemon off;'"
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/bash -c "(cd /fluffy && ./scripts/start.sh)"
+    volumes:
+      - ./sites.conf:/etc/nginx/sites-available/default
+      - .:/fluffy
     image: nginx
     ports:
       - 8080:80

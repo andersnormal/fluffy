@@ -1,6 +1,7 @@
 import cleanup from './utils/cleanup'
 import { error } from './utils/log'
 import { exit } from 'process'
+import mode from './utils/mode'
 import create from './utils/create'
 
 export default async (socket: string) => {
@@ -11,4 +12,5 @@ export default async (socket: string) => {
   }
 
   create(socket)
+  mode(socket)
 }

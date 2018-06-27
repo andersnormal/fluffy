@@ -20,7 +20,7 @@ export default (socket: string) => {
 
     // Messages are buffers. use toString
     stream.on('data', function (msg) {
-      log(msg)
+      log(msg.toString())
       // msg = msg.toString();
       // if (msg === '__snootbooped') {
       //   console.log("Client's snoot confirmed booped.");

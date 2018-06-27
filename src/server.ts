@@ -1,4 +1,4 @@
 import Config from './config'
-import setup from './setup';
+import setup from './setup'
 
 setup(Config.SocketFile)
