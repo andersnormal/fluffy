@@ -1,0 +1,38 @@
+{
+  "name": "fluffy",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json --outDir ./dist",
+    "clean": "npm run rimraf -- dist node_modules",
+    "clean:dist": "npm run rimraf -- dist",
+    "rimraf": "rimraf",
+    "server:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon --watch dist ./dist/server.js",
+    "start": "cross-env NODE_ENV=development npm run build && concurrently \"npm run watch\" \"npm run server:dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc --watch -p tsconfig.json --outDir ./dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andersnormal/fluffy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andersnormal/fluffy/issues"
+  },
+  "homepage": "https://github.com/andersnormal/fluffy#readme",
+  "devDependencies": {
+    "@types/node": "^10.5.0",
+    "concurrently": "^3.6.0",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.17.5",
+    "rimraf": "^2.6.2",
+    "typescript": "^2.9.2"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "tslib": "^1.9.3"
+  }
+}

@@ -1,0 +1,14 @@
+version: "3.2"
+
+services:
+
+  fluffy:
+    command: /bin/bash -c "exec nginx -g 'daemon off;'"
+    image: nginx
+    ports:
+      - 8080:80
+    networks:
+      - dev
+
+networks:
+  dev:
