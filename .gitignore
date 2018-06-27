@@ -39,6 +39,7 @@ dist
 public
 !icon/
 *.js.map
+types
 
 # Doc #
 /doc
