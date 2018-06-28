@@ -1,18 +1,12 @@
-import { stat, unlink } from 'fs'
+import leftover from './leftover'
+import { error } from './log'
+import { exit } from 'process'
+import Config from '../config'
 
-export default async (socket: string) => {
-  return new Promise((resolve, reject) => {
-    stat(socket, (err) => {
-      if (err) {
-        resolve()
-      }
-      unlink(socket, (err) => {
-        if (err) {
-          // This should never happen.
-          reject(err);
-        }
-        resolve()
-      })
-    })
-  })
+export default async (config: Config) => {
+  try {
+    await leftover(config.socket)
+  } catch (e) {
+    error(e); exit(1)
+  }
 }
