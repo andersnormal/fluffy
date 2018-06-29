@@ -55,7 +55,6 @@ export default class BundleRenderer {
         if (err) {
           reject(err)
         }
-
         resolve(html)
       }) // wait to render string
     })

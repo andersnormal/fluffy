@@ -19,9 +19,6 @@ export default class Server {
   }
 
   public async setup() {
-    // cleanup
-    await cleanup(this.config)
-
     // config router
     this.router = new Router()
 
@@ -35,7 +32,6 @@ export default class Server {
 
     this.app // config app
       .use(this.router.routes())
-    // .use(this.router.allowedMethods())
 
     // attach server
     this.listener = this.app.listen(this.config.socket)
