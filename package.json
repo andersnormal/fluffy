@@ -1,7 +1,7 @@
 {
   "name": "fluffy",
   "version": "0.0.1",
-  "description": "",
+  "description": "A teeny tiny Vue Server Side Renderer",
   "main": "dist/main.js",
   "bin": {
     "fluffy": "./bin/fluffy"
@@ -11,22 +11,32 @@
     "clean": "npm run rimraf -- dist node_modules",
     "clean:dist": "npm run rimraf -- dist",
     "rimraf": "rimraf",
-    "server:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon --watch dist ./dist/main.js -- --bundle example/vue-ssr-server-bundle.json --manifest example/vue-ssr-client-manifest.json --template example/index.html",
+    "server:dev": "cross-env NODE_ENV=development ./node_modules/.bin/nodemon --watch dist ./dist/main.js -- --bundle public/vue-ssr-server-bundle.json --manifest public/vue-ssr-client-manifest.json --template public/index.html",
     "start": "cross-env NODE_ENV=development npm run build && concurrently \"npm run watch\" \"npm run server:dev\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc --watch -p tsconfig.json --outDir ./dist"
   },
+  "files": [
+    "bin",
+    "dist",
+    "types",
+    "scripts"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andersnormal/fluffy.git"
   },
-  "author": "",
+  "author": {
+    "name": "Sebastian Döll",
+    "email": "sebastian@katallaxie.me"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andersnormal/fluffy/issues"
   },
   "homepage": "https://github.com/andersnormal/fluffy#readme",
   "devDependencies": {
+    "@types/koa": "^2.0.46",
     "@types/koa-router": "^7.0.30",
     "@types/node": "^10.5.0",
     "concurrently": "^3.6.0",
@@ -36,13 +46,11 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
-    "@types/koa": "^2.0.46",
     "chalk": "^2.4.1",
     "http-graceful-shutdown": "^2.1.1",
     "koa": "^2.5.1",
     "koa-router": "^7.4.0",
     "lru-cache": "^4.1.3",
-    "regenerator-runtime": "^0.12.0",
     "tslib": "^1.9.3",
     "vue-server-renderer": "^2.5.16",
     "yargs": "^11.0.0"

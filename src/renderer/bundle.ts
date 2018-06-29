@@ -2,6 +2,7 @@ import * as LRU from 'lru-cache'
 import Config from '../config'
 import { createBundleRenderer } from 'vue-server-renderer'
 import { BundleRendererConfig } from './config'
+import { error, log } from '../utils/log'
 import setHeaders from '../utils/setHeaders'
 
 export default class BundleRenderer {
@@ -53,6 +54,7 @@ export default class BundleRenderer {
       this.renderer.renderToString(context, (err, html) => {
         clearTimeout(timeout) // clean-up
         if (err) {
+          error(err)
           reject(err)
         }
 
