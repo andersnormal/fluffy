@@ -4,6 +4,7 @@ import { createBundleRenderer } from 'vue-server-renderer'
 import { BundleRendererConfig } from './config'
 import { error, log } from '../utils/log'
 import setHeaders from '../utils/setHeaders'
+import Context from '../context'
 
 export default class BundleRenderer {
   public cache
@@ -37,10 +38,13 @@ export default class BundleRenderer {
 
   public middleware() {
     return async (ctx, next) => {
+      const context = new Context(ctx.req)
+
       await next() // wait for downstream
 
-      ctx.body = await this.render(ctx, {}) // wait for render
+      ctx.body = await this.render(ctx, context) // wait for render
 
+      // set headers
       setHeaders(ctx, { 'Content-Type': 'text/html' })
     }
   }
