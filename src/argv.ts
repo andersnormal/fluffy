@@ -27,6 +27,11 @@ export default class Argv {
     description: 'Socket chmod (e.g. `0666`)'
   }
 
+  public static timeout = {
+    number: true,
+    description: 'Timeout to the render process (e.g. 60s)'
+  }
+
   public parseArgs() {
     return argv
       .usage('Usage: $0 [options]')

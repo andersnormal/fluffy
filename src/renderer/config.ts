@@ -10,11 +10,13 @@ export class BundleRendererConfig {
   public manifest
   public bundle
   public baseDir
+  public timeout
 
   constructor(config: Config) {
     this.template = config.template
     this.manifest = config.manifest
     this.bundle = config.bundle
+    this.timeout = config.timeout
     this.baseDir = dirname(this.bundle)
 
     this.create()

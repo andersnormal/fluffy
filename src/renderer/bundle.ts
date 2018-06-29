@@ -59,7 +59,7 @@ export default class BundleRenderer {
       }) // wait to render string
     })
 
-    return timeout(60 * 100, render)
+    return timeout(this.config.timeout, render)
       .then(html => html)
       .catch(err => ctx.throw(500, err))
   }

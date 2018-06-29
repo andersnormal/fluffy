@@ -13,6 +13,7 @@ export type Args = {
   bundle?: string
   manifest?: string
   template?: string
+  timeout?: number
 }
 
 export default class Config {
@@ -21,6 +22,7 @@ export default class Config {
   private _manifest: string
   private _bundle: string
   private _template: string
+  private _timeout = 60 * 1000
 
   public get socket() {
     return this._socket
@@ -42,12 +44,17 @@ export default class Config {
     return this._template
   }
 
-  constructor({ socket, mode, bundle, manifest, template }: Args) {
+  public get timeout() {
+    return this._timeout
+  }
+
+  constructor({ socket, mode, bundle, manifest, template, timeout }: Args) {
     this._socket = socket || FLUFFY_SOCKET || this._socket
     this._mode = mode || this._mode
     this._bundle = bundle || FLUFFY_BUNDLE || this._bundle
     this._manifest = manifest || FLUFFY_MANIFEST || this.manifest
     this._template = template || FLUFFY_TEMPLATE || this._template
+    this._timeout = timeout * 1000 || this._timeout
 
     // resolve paths
     this._manifest = resolve(this._manifest)
