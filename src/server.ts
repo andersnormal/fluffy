@@ -3,7 +3,7 @@ import cleanup from './utils/cleanup'
 import { log } from './utils/log'
 import * as Koa from 'koa'
 import * as Router from 'koa-router'
-import access from './utils/access'
+import chmod from './utils/chmod'
 import * as gracefulShutdown from 'http-graceful-shutdown'
 
 export default class Server {
@@ -44,7 +44,7 @@ export default class Server {
     log(`listening on: ${this.config.socket}`)
 
     // mode
-    await access(this.config)
+    await chmod(this.config)
 
     // register graceful shutdown
     gracefulShutdown(this.listener, {

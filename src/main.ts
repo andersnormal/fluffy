@@ -15,4 +15,6 @@ const renderer = new BundleRenderer(config)
 
 // create server
 const server = new Server(config, renderer)
+
+// start the server
 server.start()

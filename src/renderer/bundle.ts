@@ -2,7 +2,7 @@ import * as LRU from 'lru-cache'
 import Config from '../config'
 import { createBundleRenderer } from 'vue-server-renderer'
 import { BundleRendererConfig } from './config'
-import { error, log } from '../utils/log'
+import timeout from '../utils/timeout'
 import setHeaders from '../utils/setHeaders'
 import Context from '../context'
 
@@ -50,22 +50,18 @@ export default class BundleRenderer {
   }
 
   public async render(ctx, context) {
-    return new Promise((resolve, reject) => {
-      const timeout = setTimeout(function () { // set a timeout for render
-        reject('Render Timeout')
-      }, 60 * 1000) // this is artifical
-
+    const render = new Promise((resolve, reject) => {
       this.renderer.renderToString(context, (err, html) => {
-        clearTimeout(timeout) // clean-up
         if (err) {
-          error(err)
           reject(err)
         }
 
         resolve(html)
       }) // wait to render string
     })
-      .then(html => html) //
+
+    return timeout(60 * 100, render)
+      .then(html => html)
       .catch(err => ctx.throw(500, err))
   }
 }

@@ -26,7 +26,7 @@ export class BundleRendererConfig {
       this.manifest = require(relative(this.manifest, __dirname))
       this.template = readFileSync(resolve(this.template), 'utf-8')
     } catch (err) {
-      log(error(err))
+      error(err)
       exit(1)
     }
   }

@@ -49,6 +49,7 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "chalk": "^2.4.1",
     "http-graceful-shutdown": "^2.1.1",
     "koa": "^2.5.1",

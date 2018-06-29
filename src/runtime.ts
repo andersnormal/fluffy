@@ -15,6 +15,6 @@ export default class Runtime {
   }
 
   public get Production(): Boolean {
-    return !this.Development
+    return NODE_ENV === Environment.Production
   }
 }

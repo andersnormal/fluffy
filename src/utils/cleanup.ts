@@ -1,12 +1,12 @@
-import leftover from './leftover'
-import { error } from './log'
-import { exit } from 'process'
 import Config from '../config'
+import exit from './exit'
+import { promisify } from 'util'
+import * as fs from 'fs'
 
-export default async (config: Config) => {
-  try {
-    await leftover(config.socket)
-  } catch (e) {
-    error(e); exit(1)
-  }
-}
+const stat = promisify(fs.stat)
+const unlink = promisify(fs.unlink)
+
+export default async (config: Config) =>
+  await stat(config.socket)
+    .then(() => unlink(config.socket))
+    .catch(err => exit(err))
