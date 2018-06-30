@@ -15,6 +15,7 @@ export type Args = {
   manifest?: string
   template?: string
   timeout?: number
+  port?: string
 }
 
 export default class Config {
@@ -24,7 +25,7 @@ export default class Config {
   private _bundle: string
   private _template: string
   private _timeout = 60 * 1000
-  private _port: number
+  private _port: string
 
   public get socket() {
     return this._socket
