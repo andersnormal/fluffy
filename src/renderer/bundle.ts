@@ -2,6 +2,7 @@ import * as LRU from 'lru-cache'
 import Config from '../config'
 import { createBundleRenderer } from 'vue-server-renderer'
 import { BundleRendererConfig } from './config'
+import { promisify } from 'util'
 import timeout from '../utils/timeout'
 import setHeaders from '../utils/setHeaders'
 import Context from '../context'
@@ -52,14 +53,9 @@ export default class BundleRenderer implements IRenderer<BundleRenderer, BundleR
   }
 
   public async render(ctx, context) {
-    const render = new Promise((resolve, reject) => {
-      this.renderer.renderToString(context, (err, html) => {
-        if (err) {
-          reject(err)
-        }
-        resolve(html)
-      }) // wait to render string
-    })
+    const render = promisify(this.renderer.renderToString)(context)
+      .then(html => html)
+      .catch(err => err)
 
     return timeout(this.config.timeout, render)
       .then(html => html)

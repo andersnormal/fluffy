@@ -11,11 +11,11 @@ export const {
 } = env
 
 export default class Runtime {
-  public get Development(): Boolean {
+  public get Development(): boolean {
     return NODE_ENV === Environment.Development
   }
 
-  public get Production(): Boolean {
+  public get Production(): boolean {
     return NODE_ENV === Environment.Production
   }
 }
