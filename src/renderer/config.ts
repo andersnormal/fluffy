@@ -11,6 +11,7 @@ export class BundleRendererConfig {
   public bundle
   public baseDir
   public timeout
+  public runInNewContext = false
 
   constructor(config: Config) {
     this.template = config.template

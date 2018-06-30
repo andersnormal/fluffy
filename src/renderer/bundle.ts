@@ -29,11 +29,12 @@ export default class BundleRenderer implements IRenderer<BundleRenderer, BundleR
     this.renderer = createBundleRenderer(this.config.bundle, {
       // ...options,
       template: this.config.template,
+      clientManifest: this.config.manifest,
       cache: this.cache,
       // this is only needed when vue-server-renderer is npm-linked
       basedir: this.config.baseDir,
       // recommended for performance
-      runInNewContext: false
+      runInNewContext: this.config.runInNewContext
     })
   }
 
