@@ -5,8 +5,9 @@ import { BundleRendererConfig } from './config'
 import timeout from '../utils/timeout'
 import setHeaders from '../utils/setHeaders'
 import Context from '../context'
+import IRenderer from './renderer'
 
-export default class BundleRenderer {
+export default class BundleRenderer implements IRenderer<BundleRenderer, BundleRendererConfig>  {
   public cache
   public renderer
   public config: BundleRendererConfig
