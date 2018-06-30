@@ -8,7 +8,7 @@
 [![TypeScript](https://badges.frapsoft.com/typescript/awesome/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
-Fluffy is a **server side renderer** for [Vue.js](https://vuejs.org/), which is intended to be used with [Nginx](https://nginx.org) to proxy requests. By 
+Fluffy is a **server side renderer** for [Vue.js](https://vuejs.org/), which is intended to be used with [Nginx](https://nginx.org) to proxy requests.
 
 ## Getting Started
 
@@ -19,6 +19,9 @@ Fluffy is a **server side renderer** for [Vue.js](https://vuejs.org/), which is 
 ```bash
 # Installs Fluffy to your Vue
 npm i @andersnormal/fluffy
+
+# Start fluffy
+./node_modules/.bin/fluffy
 ```
 
 ## Arguments
@@ -29,9 +32,7 @@ npm i @andersnormal/fluffy
 
 Displays all the available arguments
 
-### `--socket` (string)
-
-* default: `/tmp/fluffy.sock`
+### `--socket` (string) Default: `/tmp/fluffy.sock`
 
 The socket to listen on for rendering requests.
 
@@ -39,7 +40,7 @@ The socket to listen on for rendering requests.
 
 Path to the server bundle.
 
-### `--manigest` (string)
+### `--manifest` (string)
 
 Path to the client manifest
 
