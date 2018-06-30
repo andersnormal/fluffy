@@ -32,6 +32,11 @@ export default class Argv {
     description: 'Timeout to the render process (e.g. 60s)'
   }
 
+  public static port = {
+    number: true,
+    description: 'Port to listen to (e.g. 8080)'
+  }
+
   public parseArgs() {
     return argv
       .usage('Usage: $0 [options]')

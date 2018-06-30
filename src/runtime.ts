@@ -6,7 +6,8 @@ export const {
   FLUFFY_SOCKET,
   FLUFFY_BUNDLE,
   FLUFFY_MANIFEST,
-  FLUFFY_TEMPLATE
+  FLUFFY_TEMPLATE,
+  FLUFFY_PORT
 } = env
 
 export default class Runtime {

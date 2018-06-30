@@ -34,7 +34,7 @@ export default class Server {
       .use(this.router.routes())
 
     // attach server
-    this.listener = this.app.listen(this.config.socket)
+    this.listener = this.app.listen(this.config.port || this.config.socket)
 
     // verbose
     log(`listening on: ${this.config.socket}`)
@@ -47,7 +47,7 @@ export default class Server {
       signals: 'SIGINT SIGTERM',
       timeout: 30 * 1000,
       onShutdown: cleanup.bind(this, this.config),
-      finally: function () {
+      finally: () => {
         log(`Server gracefully shut down ...`)
       }
     })

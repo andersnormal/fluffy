@@ -36,6 +36,10 @@ Displays all the available arguments
 
 The socket to listen on for rendering requests.
 
+### `--port` (number)
+
+The port to listen on for rendering requests.
+
 ### `--bundle` (string)
 
 Path to the server bundle.
