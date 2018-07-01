@@ -35,7 +35,8 @@ export default async (app, config, cb) => {
   } catch (err) {
     exit(err)
   }
-  app.use(devMiddleware())
+  app.use(devMiddleware.devMiddleware)
+  app.use(devMiddleware.hotClient)
 
   compiler.plugin('done', () => {
     const fs = devMiddleware.dev.fileSystem
@@ -50,7 +51,7 @@ export default async (app, config, cb) => {
   })
 
   // watch and update server renderer
-  const serverCompiler = webpack(this.config.ssrConfig)
+  const serverCompiler = webpack(config.ssrConfig)
   const fs = new mfs()
   serverCompiler.outputFileSystem = fs
   serverCompiler.watch({}, (err, stats) => {
