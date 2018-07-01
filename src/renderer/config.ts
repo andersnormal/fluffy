@@ -23,7 +23,7 @@ export class BundleRendererConfig {
     this.manifest = config.manifest
     this.bundle = config.bundle
     this.timeout = config.timeout
-    this.baseDir = dirname(this.bundle)
+    this.baseDir = !this.bundle || dirname(this.bundle)
     this.dev = config.dev
     this.webpack = config.webpack
     this.noEmit = config.noEmit
