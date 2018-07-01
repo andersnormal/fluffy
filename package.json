@@ -1,6 +1,6 @@
 {
   "name": "@andersnormal/fluffy",
-  "version": "1.0.1-20",
+  "version": "1.0.1-21",
   "description": "A teeny tiny Vue Server Side Renderer",
   "main": "dist/main.js",
   "bin": {
