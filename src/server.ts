@@ -10,10 +10,7 @@ export default class Server {
   public router
   public listener
 
-  constructor(public config: Config, public renderer, public app?: Koa) {
-    // attach a new Koa app
-    this.app = this.app || new Koa()
-
+  constructor(public config: Config, public renderer, public app: Koa) {
     // set app silent
     this.app.silent = true
   }

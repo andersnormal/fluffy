@@ -22,6 +22,16 @@ export default class Argv {
     description: 'Template (e.g. `index.html`)'
   }
 
+  public static dev = {
+    boolean: true,
+    description: 'Enable development with Webpack'
+  }
+
+  public static webpack = {
+    string: true,
+    description: 'Webpack config to use'
+  }
+
   public static mode = {
     string: true,
     description: 'Socket chmod (e.g. `0666`)'
@@ -30,6 +40,11 @@ export default class Argv {
   public static timeout = {
     number: true,
     description: 'Timeout to the render process (e.g. 60s)'
+  }
+
+  public static noEmit = {
+    boolean: true,
+    description: 'Not emit any output in development'
   }
 
   public static port = {
@@ -45,6 +60,9 @@ export default class Argv {
       .options('manifest', Argv.manifest)
       .options('template', Argv.template)
       .options('mode', Argv.mode)
+      .options('dev', Argv.dev)
+      .options('webpack', Argv.webpack)
+      .options('noEmit', Argv.noEmit)
       .version(Argv.version)
       .alias('version', 'v')
       .help('help')

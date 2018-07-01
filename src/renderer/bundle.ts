@@ -7,13 +7,15 @@ import timeout from '../utils/timeout'
 import setHeaders from '../utils/setHeaders'
 import Context from '../context'
 import IRenderer from './renderer'
+import setupDevServer from '../utils/devServer'
 
 export default class BundleRenderer implements IRenderer<BundleRenderer, BundleRendererConfig>  {
   public cache
   public renderer
   public config: BundleRendererConfig
+  public webpack
 
-  constructor(config: Config) {
+  constructor(config: Config, public app) {
     // parse config
     this.config = new BundleRendererConfig(config)
 
@@ -27,6 +29,17 @@ export default class BundleRenderer implements IRenderer<BundleRenderer, BundleR
   }
 
   public create() {
+    if (this.config.dev) {
+      this.webpack = setupDevServer(this.app, this.config, (bundle, template, options) => {
+        this.renderer = createBundleRenderer(bundle, {
+          ...options,
+          template
+        })
+      })
+
+      return // do not configure real renderer
+    }
+
     this.renderer = createBundleRenderer(this.config.bundle, {
       // ...options,
       template: this.config.template,
@@ -42,6 +55,12 @@ export default class BundleRenderer implements IRenderer<BundleRenderer, BundleR
   public middleware() {
     return async (ctx, next) => {
       const context = new Context(ctx.req)
+
+      if (!this.renderer && this.config.dev) {
+        ctx.body = 'waiting for compilation... refresh in a moment.'
+
+        return next()
+      }
 
       await next() // wait for downstream
 

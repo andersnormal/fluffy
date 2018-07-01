@@ -16,6 +16,9 @@ export type Args = {
   template?: string
   timeout?: number
   port?: string
+  webpack?: string
+  dev?: boolean
+  noEmit?: boolean
 }
 
 export default class Config {
@@ -26,6 +29,9 @@ export default class Config {
   private _template: string
   private _timeout = 60 * 1000
   private _port: string
+  private _noEmit = false
+  private _dev = false
+  private _webpack: string
 
   public get socket() {
     return this._socket
@@ -55,7 +61,30 @@ export default class Config {
     return this._port
   }
 
-  constructor({ socket, mode, bundle, manifest, port, template, timeout }: Args) {
+  public get noEmit() {
+    return this._noEmit
+  }
+
+  public get webpack() {
+    return this._webpack
+  }
+
+  public get dev() {
+    return this._dev
+  }
+
+  constructor({
+    socket,
+    mode,
+    bundle,
+    webpack,
+    noEmit,
+    dev,
+    manifest,
+    port,
+    template,
+    timeout
+  }: Args) {
     this._socket = socket || FLUFFY_SOCKET || this._socket
     this._mode = mode || this._mode
     this._bundle = bundle || FLUFFY_BUNDLE || this._bundle
@@ -63,6 +92,9 @@ export default class Config {
     this._template = template || FLUFFY_TEMPLATE || this._template
     this._timeout = timeout * 1000 || this._timeout
     this._port = port || FLUFFY_PORT || this.port
+    this._webpack = webpack || this.webpack
+    this._noEmit = noEmit || this._noEmit
+    this._dev = dev || this._dev
 
     // resolve paths
     this._manifest = resolve(this._manifest)
