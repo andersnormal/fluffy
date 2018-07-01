@@ -36,6 +36,21 @@ Displays all the available arguments
 
 The socket to listen on for rendering requests.
 
+### `--dev` (boolean)
+
+Enable the [koa-webpack](https://github.com/shellscape/koa-webpack) middleware for development.
+
+### `--webpack` (string)
+
+Path to the Webpack config for development. This should expose an object with
+
+```
+{
+  ssrConfig: YOUR_CONFIG,
+  devConfig: YOUR_CONFIG
+}
+```
+
 ### `--port` (number)
 
 The port to listen on for rendering requests.
