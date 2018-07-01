@@ -16,6 +16,9 @@ export default class Server {
   }
 
   public async setup() {
+    // create renderer
+    await this.renderer.create()
+
     // config router
     this.router = new Router()
 

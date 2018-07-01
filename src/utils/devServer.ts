@@ -35,11 +35,10 @@ export default async (app, config, cb) => {
   } catch (err) {
     exit(err)
   }
-  app.use(devMiddleware.devMiddleware)
-  app.use(devMiddleware.hotClient)
+  app.use(devMiddleware)
 
   compiler.plugin('done', () => {
-    const fs = devMiddleware.dev.fileSystem
+    const fs = devMiddleware.devMiddleware.fileSystem
     const readFile = (file) => fs.readFileSync(file, 'utf-8')
     clientManifest = JSON.parse(readFile(config.manifest))
     template = readFile(config.template)
