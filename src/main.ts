@@ -16,6 +16,7 @@ const app = new Koa()
 
 // create renderer
 const renderer = new BundleRenderer(config, app)
+renderer.create()
 
 // create server
 const server = new Server(config, renderer, app)

@@ -22,7 +22,6 @@ export default async (app, config, cb) => {
     devMiddleware = await require('koa-webpack')({
       compiler,
       config: {
-        writeToDisk: !config.noEmit,
         publicPath: config.devConfig.output.publicPath,
         noInfo: true,
         stats: {
@@ -38,7 +37,7 @@ export default async (app, config, cb) => {
   app.use(devMiddleware)
 
   compiler.plugin('done', () => {
-    const fs = devMiddleware.dev.fileSystem
+    const fs = devMiddleware.devMiddleware.fileSystem
     const readFile = (file) => fs.readFileSync(file, 'utf-8')
     clientManifest = JSON.parse(readFile(config.manifest))
     template = readFile(config.template)
@@ -50,7 +49,7 @@ export default async (app, config, cb) => {
   })
 
   // watch and update server renderer
-  const serverCompiler = webpack(this.config.ssrConfig)
+  const serverCompiler = webpack(config.ssrConfig)
   const fs = new mfs()
   serverCompiler.outputFileSystem = fs
   serverCompiler.watch({}, (err, stats) => {
@@ -70,5 +69,5 @@ export default async (app, config, cb) => {
     }
   })
 
-  return devMiddleware
+  return { devMiddleware, app }
 }
