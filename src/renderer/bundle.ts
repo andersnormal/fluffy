@@ -24,11 +24,13 @@ export default class BundleRenderer implements IRenderer<BundleRenderer, BundleR
       max: 100,
       maxAge: 1000 * 60 // 60s
     })
+
+    this.create()
   }
 
-  public async create() {
+  public create() {
     if (this.config.dev) {
-      this.webpack = await setupDevServer(this.app, this.config, (bundle, template, options) => {
+      this.webpack = setupDevServer(this.app, this.config, (bundle, template, options) => {
         this.renderer = createBundleRenderer(bundle, {
           ...options,
           template
