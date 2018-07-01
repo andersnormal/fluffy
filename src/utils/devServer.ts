@@ -1,32 +1,40 @@
 import * as mfs from 'memory-fs'
 import * as webpack from 'webpack'
+import exit from './exit'
 
-export default (app, config, cb) => {
+export default async (app, config, cb) => {
   let bundle
   let clientManifest
   let template
+  let devMiddleware
 
   const ready = (...args) => {
     cb(...args)
   }
 
   // modify client config to work with hot middleware
-  this.config.devConfig.output.filename = '[name].js'
+  config.devConfig.output.filename = '[name].js'
 
   // dev middleware
-  const compiler = webpack(this.config.devConfig)
-  const devMiddleware = require('koa-webpack')({
-    compiler,
-    config: {
-      publicPath: this.config.devConfig.output.publicPath,
-      noInfo: true,
-      stats: {
-        colors: true,
-        chunks: false
-      },
-      // serverSideRender: true
-    }
-  })
+  const compiler = webpack(config.devConfig)
+
+  try {
+    devMiddleware = await require('koa-webpack')({
+      compiler,
+      config: {
+        writeToDisk: !config.noEmit,
+        publicPath: config.devConfig.output.publicPath,
+        noInfo: true,
+        stats: {
+          colors: true,
+          chunks: false
+        },
+        // serverSideRender: true
+      }
+    })
+  } catch (err) {
+    exit(err)
+  }
   app.use(devMiddleware)
 
   compiler.plugin('done', () => {
