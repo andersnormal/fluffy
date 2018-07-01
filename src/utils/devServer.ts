@@ -35,7 +35,7 @@ export default async (app, config, cb) => {
   } catch (err) {
     exit(err)
   }
-  app.use(devMiddleware)
+  app.use(devMiddleware())
 
   compiler.plugin('done', () => {
     const fs = devMiddleware.dev.fileSystem
