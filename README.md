@@ -16,6 +16,8 @@ Fluffy is a **server side renderer** for [Vue.js](https://vuejs.org/), which is 
 > Fluffy uses [Koa](https://github.com/koajs/koa) as middleware
 > Fluffy provides a `help` command to display all possible arguments
 
+:scream_cat: [vue-preboot](https://github.com/katallaxie/vue-preboot) is using Fluffy for development and delivery. Check it out.
+
 ```bash
 # Installs Fluffy to your Vue
 npm i @andersnormal/fluffy
