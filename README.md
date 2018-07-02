@@ -8,7 +8,7 @@
 [![TypeScript](https://badges.frapsoft.com/typescript/awesome/typescript.png?v=101)](https://github.com/ellerbrock/typescript-badges/)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 
-Fluffy is a **server side renderer** for [Vue.js](https://vuejs.org/), which is intended to be used with [Nginx](https://nginx.org) to proxy requests.
+Fluffy is a **server side renderer** middleware for [Vue.js](https://vuejs.org/), which is intended to be used with [Nginx](https://nginx.org) to proxy requests.
 
 ## Getting Started
 
