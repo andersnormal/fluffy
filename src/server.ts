@@ -37,7 +37,7 @@ export default class Server {
     this.listener = this.app.listen(this.config.port || this.config.socket)
 
     // verbose
-    log(`listening on: ${this.config.socket}`)
+    log(`listening on: ${this.config.port || this.config.socket}`)
 
     // mode
     await chmod(this.config)
