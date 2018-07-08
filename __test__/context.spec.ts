@@ -1,5 +1,5 @@
 import Context from '../src/context'
-import MockReq from 'mock-req'
+import * as MockReq from 'mock-req'
 
 beforeEach(() => {
   jest.resetModules()

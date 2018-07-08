@@ -23,7 +23,7 @@ Fluffy is a **server side renderer** middleware for [Vue.js](https://vuejs.org/)
 npm i @andersnormal/fluffy
 
 # Start fluffy
-./node_modules/.bin/fluffy -port 3000 --dev --webpack config/configs --bundle public/vue-ssr-server-bundle.json --manifest public/vue-ssr-client-manifest.json --template public/index.html
+./node_modules/.bin/fluffy --port 3000 --dev --webpack config/configs --bundle public/vue-ssr-server-bundle.json --manifest public/vue-ssr-client-manifest.json --template public/index.html
 ```
 
 ## Arguments
